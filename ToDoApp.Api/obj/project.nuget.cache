@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "7ZVKmWtoB8M6uR2cRfQUWKKt9db8RrZ9Lh0DNynfwCW0qamalHsv/2CUPNi70Txf6BmOQYqLfylwXFwpr47EEQ==",
+  "success": true,
+  "projectFilePath": "C:\\Technovert\\ToDoApp\\ToDoApp.Api\\ToDoApp.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\karth\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.21\\microsoft.netcore.app.host.win-x64.3.1.21.nupkg.sha512"
+  ],
+  "logs": []
+}
