@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,31 +9,65 @@ namespace ToDoApp.Api
 {
     public class ToDoItemsService
     {
-        public static List<ToDoItem> ToDoItems = new List<ToDoItem> { new ToDoItem { value = "learn react", id=1 }, new ToDoItem { value = "improve everyday", id=2 } };
+        public ToDoAppDbContext context;
 
+        public ToDoItemsService()
+        {
+            context = new ToDoAppDbContext();
+        }
 
         public List<ToDoItem> GetAllItems()
         {
-            return ToDoItems;
+            return context.ToDoItems.ToList();
         }
 
-        public ToDoItem AddItem(ToDoItem item) {
-            ToDoItems.Add(item);
-            return item;
-        }
-
-        public ToDoItem UpdateItem(int id, ToDoItem item)
+        public IActionResult GetItem(string id)
         {
-            var itemToBeUpdated = ToDoItems.FirstOrDefault(x => x.id == id);
-            itemToBeUpdated = item;
-            return item;
+            var item = context.ToDoItems.FirstOrDefault(x => x.Id == id);
+            if (item != null)
+            {
+                    return new OkObjectResult(item);
+            }
+            return new NotFoundResult();
+        } 
+
+
+        public IActionResult AddItem(ToDoItem item) {
+            try
+            {
+                context.ToDoItems.Add(item);
+                context.SaveChanges();
+                return new OkObjectResult(item);
+            }
+            catch
+            {
+                return new NotFoundResult();
+            }
         }
 
-        public ToDoItem DeleteItem(int id)
+       
+
+        public IActionResult UpdateItem(string id, ToDoItem item)
         {
-            var itemToBeDeleted = ToDoItems.FirstOrDefault(x => x.id == id);
-            itemToBeDeleted.isDeleted = true;
-            return itemToBeDeleted;
+            var itemToBeUpdated = context.ToDoItems.FirstOrDefault(x => x.Id == id);
+            if (itemToBeUpdated != null)
+            {
+                itemToBeUpdated = item;
+                return new OkObjectResult(item);
+            }
+            return new NotFoundResult();
+            
+        }
+
+        public IActionResult DeleteItem(string id)
+        {
+            var itemToBeDeleted = context.ToDoItems.FirstOrDefault(x => x.Id == id);
+            if (itemToBeDeleted != null)
+            {
+                itemToBeDeleted.IsDeleted = true;
+                return new OkObjectResult(itemToBeDeleted);
+            }
+            return new NotFoundResult();
         }
         
     }

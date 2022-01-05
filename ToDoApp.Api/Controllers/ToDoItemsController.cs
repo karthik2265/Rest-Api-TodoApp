@@ -9,7 +9,7 @@ namespace ToDoApp.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ToDoItems : Controller
+    public class ToDoItemsController : Controller
     {
         ToDoItemsService service;
         public IActionResult Index()
@@ -17,7 +17,7 @@ namespace ToDoApp.Api.Controllers
             return View();
         }
 
-        public ToDoItems()
+        public ToDoItemsController()
         {
             service = new ToDoItemsService();
         }
@@ -32,38 +32,32 @@ namespace ToDoApp.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public dynamic GetOne(int id)
+        public dynamic GetOne(string id)
         {
-            return ToDoItemsService.ToDoItems.FirstOrDefault(x => x.id == id);
+            return null;
         }
 
         [HttpPost]
         public dynamic Post(ToDoItem newItem)
         {
-            newItem.id = ToDoItemsService.ToDoItems.Count + 1;
+            newItem.Id = DateTime.Now.ToString();
             service.AddItem(newItem);
             return newItem;
+            
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public dynamic Delete(int id)
+        public dynamic Delete(string id)
         {
-            var itemToBeDeleted = ToDoItemsService.ToDoItems.Find(x => x.id == id);
-            itemToBeDeleted.isDeleted = true;
-            return itemToBeDeleted;
+            return null;
         }
 
         [HttpPatch]
         [Route("{id}")]
-        public dynamic Patch(int id, ToDoItem item)
+        public dynamic Patch(string id, ToDoItem item)
         {
-            var itemToBeUpdated = ToDoItemsService.ToDoItems.Find(x => x.id == id);
-            itemToBeUpdated = item;
-            var index = ToDoItemsService.ToDoItems.FindIndex(x => x.id == id);
-            ToDoItemsService.ToDoItems[index] = itemToBeUpdated;
-            itemToBeUpdated.id = index + 1;
-            return itemToBeUpdated;
+            return null;
         }
     }
 }

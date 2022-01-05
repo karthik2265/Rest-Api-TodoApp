@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f4d539de-c2e4-4f09-9e05-c193c903411a": {
+      "ProjectGuid": "f4d539de-c2e4-4f09-9e05-c193c903411a",
+      "DisplayName": "ToDoApp.Api",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

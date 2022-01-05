@@ -7,10 +7,11 @@ namespace ToDoApp.Api.Models
 {
     public class ToDoItem
     {
-        public string value { get; set; }
 
-        public int id { get; set; }
+        public string Value { get; set; }
 
-        public bool isDeleted { get; set; }
+        public string Id { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }
