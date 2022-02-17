@@ -19,7 +19,8 @@ namespace ToDoApp.Api.Controllers
 
         public ToDoItemsController()
         {
-            service = new ToDoItemsService();
+            ToDoAppDbContext toDoAppDbContext = new ToDoAppDbContext();
+            service = new ToDoItemsService(toDoAppDbContext);
         }
 
 

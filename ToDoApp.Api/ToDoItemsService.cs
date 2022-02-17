@@ -11,9 +11,9 @@ namespace ToDoApp.Api
     {
         public ToDoAppDbContext context;
 
-        public ToDoItemsService()
+        public ToDoItemsService(ToDoAppDbContext c)
         {
-            context = new ToDoAppDbContext();
+            context = c;
         }
 
         public List<ToDoItem> GetAllItems()
